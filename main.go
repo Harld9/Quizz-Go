@@ -2,6 +2,7 @@ package main
 
 import (
 	"Quizz-Go/affichage"
+	"Quizz-Go/logic"
 	"fmt"
 	"os"
 )
@@ -20,6 +21,7 @@ func main() {
 		switch menuChoice {
 		case 1:
 			affichage.ClearScreen()
+			User := logic.InitUser()
 			for {
 				menuChoice = 0
 				affichage.MenuPrincipale()
