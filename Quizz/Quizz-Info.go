@@ -1,1 +1,1 @@
-package Qinfo
+package info
