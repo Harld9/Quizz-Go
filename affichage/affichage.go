@@ -36,5 +36,3 @@ func MenuQuizz() {
 	Separator()
 
 }
-
-sdlijdkdgjqcyuwcxsqfi
