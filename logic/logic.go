@@ -17,7 +17,7 @@ func InitUser() *User {
 	affichage.NomUser()
 
 	var userName string
-	fmt.Scanln(&userName)
+	fmt.Scan(&userName)
 	fmt.Println("Bienvenu :", userName)
 
 	return &User{
