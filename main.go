@@ -59,9 +59,7 @@ func main() {
 					}
 				case 2:
 					affichage.ClearScreen()
-					fmt.Println("Statistiques")
-					fmt.Println(User)
-					// Faire une fonction qui montre le nom + score des quizz déjà fait + le score total
+					logic.UserStats(User)
 				case 3:
 					affichage.ClearScreen()
 					menuChoice = 3

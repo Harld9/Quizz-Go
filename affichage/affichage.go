@@ -1,6 +1,8 @@
 package affichage
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func Separator() {
 	fmt.Println("==================================================")
@@ -54,5 +56,11 @@ func MenuQuizz() {
 func NomUser() {
 	Separator()
 	fmt.Println("Veuillez entrer votre nom :")
+	Separator()
+}
+
+func Statistiques() {
+	Separator()
+	fmt.Println("Statistiques de l'utilisateur")
 	Separator()
 }
