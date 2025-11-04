@@ -6,7 +6,7 @@ import (
 
 func Cyber() {
 	var menuChoice int
-	//affichage.AffichageMenuCyber()
+	affichage.AffichageMenuCyber()
 	fmt.Scan(&menuChoice)
 	switch menuChoice {
 
