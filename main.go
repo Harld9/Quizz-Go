@@ -1,7 +1,7 @@
 package main
 
 import (
-	cyber "Quizz-Go/Quizz"
+	cyber "Quizz-Go/QuizzCyber"
 	"Quizz-Go/affichage"
 	"fmt"
 )
