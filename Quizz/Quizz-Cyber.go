@@ -5,68 +5,14 @@ import (
 	"fmt"
 )
 
-func Cyber() {
-	var menuChoice int
-	affichage.AffichageMenuCyber()
-	fmt.Scan(&menuChoice)
-	switch menuChoice {
-
-	}
-
-	/*var menuChoice int
-
-		for {
-			fmt.Print("\033[H\033[2J")
-			affichage.AffichageMenuCyber()
-			fmt.Scan(&menuChoice)
-			switch menuChoice {
-			case 1:
-				fmt.Print("\033[H\033[2J")
-
-			}
-			affichage.AffichageMenuPrincipal()
-			fmt.Scan(&menuChoice)
-
-			switch menuChoice {
-			case 1:
-
-				// Effacer l'écran
-				fmt.Print("\033[H\033[2J")
-
-			case 2:
-
-				// Effacer l'écran
-				fmt.Print("\033[H\033[2J")
-
-			case 3:
-
-				// Effacer l'écran
-				fmt.Print("\033[H\033[2J")
-
-			case 4:
-
-				// Effacer l'écran
-				fmt.Print("\033[H\033[2J")
-
-			case 5:
-
-				// Effacer l'écran
-				fmt.Print("\033[H\033[2J")
-
-			case 6:
-
-			default:
-				fmt.Print("\033[H\033[2J")
-				fmt.Printf("\n❌ Il ne se passe rien... Choix invalide.\n")
-			}
-
-			// Reset de la variable menuChoice pour éviter les boucles infinies
-			if menuChoice == 6 {
-				menuChoice = 0
-				// Retour au menu précédent (menu de démarrage)
-				break
-			}
-
-		}
-	}*/
+func Quizzcyber() {
+	affichage.Separator()
+	fmt.Println("👾 Bienvenue au Cyber Quizz :")
+	affichage.Separator()
+	fmt.Print("1 - L'Innocent du Web (Facile)")
+	fmt.Print("2 - Le Curieux Connecté (Moyen)")
+	fmt.Print("3 - Le Surfeur Méfiant (Dur)")
+	fmt.Print("4 - Le Gardien du Wifi (Très dur)")
+	fmt.Print("5 - Le Maître du Cyber-Kung-Fu (Hardcore)")
+	affichage.Separator()
 }

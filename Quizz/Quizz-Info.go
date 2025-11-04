@@ -1,1 +1,5 @@
-package Qinfo
+package info
+
+func info() {
+
+}
