@@ -15,3 +15,14 @@ func AffichageMenu() {
 	fmt.Println("3 - 👋 Quitter")
 	Separator()
 }
+
+func Choixquizz() {
+	Separator()
+	fmt.Println("Bienvenue au Quizz Go")
+	Separator()
+	fmt.Println("1 - Quizz Data")
+	fmt.Println("2 - Quizz Info")
+	fmt.Println("3 - Quizz Cyber")
+	fmt.Println("3 - 👋 Retour")
+	Separator()
+}
