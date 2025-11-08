@@ -1,7 +1,6 @@
 package main
 
 import (
-	cyber "Quizz-Go/Quizz"
 	"Quizz-Go/affichage"
 	"Quizz-Go/logic"
 	"fmt"
@@ -12,10 +11,7 @@ func main() {
 
 	// Initialisation du choix du menu
 	var menuChoice int
-<<<<<<< HEAD
 	affichage.ClearScreen()
-=======
->>>>>>> cyber
 	// Boucle principale du jeu
 	for {
 		menuChoice = 0
@@ -78,7 +74,6 @@ func main() {
 		case 2:
 			affichage.ClearScreen()
 			fmt.Println("On verra ...")
-<<<<<<< HEAD
 			fmt.Println("Florian est un gros nul en Go 😂 et Harold adore sa copine avec une baguette de 7cm attaché sur elle *Miam*")
 		case 3:
 			affichage.ClearScreen()
@@ -87,12 +82,6 @@ func main() {
 		default:
 			affichage.ClearScreen()
 			fmt.Println("Choix invalide, veuillez réessayer.")
-=======
-
-		case 3:
-			cyber.Quizzcyber()
-
->>>>>>> cyber
 		}
 	}
 }
