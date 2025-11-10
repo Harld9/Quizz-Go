@@ -32,46 +32,45 @@ func main() {
 				fmt.Scan(&menuChoice)
 				switch menuChoice {
 				case 1:
-					fmt.Print("\033[H\033[2J")
-					fmt.Scan(&menuChoice)
-					switch menuChoice {
-					case 1:
+					compteureponse := 0
+					for x := 0; x <= len(quizzcyber.QuestionsFacile); x++ {
 						fmt.Print("\033[H\033[2J")
-						fmt.Println(quizzcyber.QuestionsFacile[0].Texte)
+						fmt.Println(quizzcyber.QuestionsFacile[x].Texte)
 						affichage.Separator()
-						fmt.Println(quizzcyber.QuestionsFacile[0].Choix[0])
-						fmt.Println(quizzcyber.QuestionsFacile[0].Choix[1])
-						fmt.Println(quizzcyber.QuestionsFacile[0].Choix[2])
-						fmt.Println(quizzcyber.QuestionsFacile[0].Choix[3])
+						fmt.Println(quizzcyber.QuestionsFacile[x].Choix[0])
+						fmt.Println(quizzcyber.QuestionsFacile[x].Choix[1])
+						fmt.Println(quizzcyber.QuestionsFacile[x].Choix[2])
+						fmt.Println(quizzcyber.QuestionsFacile[x].Choix[3])
 						fmt.Scan(&menuChoice)
-
-					case 6:
-						fmt.Print("\033[H\033[2J")
-						if menuChoice == 6 {
-							menuChoice = 0
-							return
+						if menuChoice == quizzcyber.QuestionsFacile[x].Correct {
+							fmt.Println("Bravo tu as eu la bonne réponse !")
+							compteureponse++
+						} else {
+							fmt.Println("Nul !")
 						}
+						fmt.Print("\033[H\033[2J")
 					}
+					fmt.Println("Tu as fini le Quizz ! avec ", compteureponse, " réponses justes sur 10 !")
+				case 4:
+					fmt.Print("\033[H\033[2J")
+					if menuChoice == 4 {
+						menuChoice = 0
+						return
+					}
+
+				case 2: //Crédits
+					//case 3:
+					// Quitter le jeu
+					os.Exit(0)
+				default:
+
+					fmt.Print("\033[H\033[2J")
+
+					time.Sleep(1 * time.Second)
+
+					// Choix invalide
+					fmt.Printf("\n❌ Il ne se passe rien... Choix invalide.\n")
 				}
-			case 4:
-				fmt.Print("\033[H\033[2J")
-				if menuChoice == 4 {
-					menuChoice = 0
-					return
-				}
-
-			case 2: //Crédits
-				//case 3:
-				// Quitter le jeu
-				os.Exit(0)
-			default:
-
-				fmt.Print("\033[H\033[2J")
-
-				time.Sleep(1 * time.Second)
-
-				// Choix invalide
-				fmt.Printf("\n❌ Il ne se passe rien... Choix invalide.\n")
 			}
 		}
 	}
