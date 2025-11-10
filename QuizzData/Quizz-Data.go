@@ -1,5 +1,5 @@
-package data
+package quizzdata
 
-func data() {
+func Dataquizz() {
 
 }

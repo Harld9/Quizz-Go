@@ -1,5 +1,5 @@
-package info
+package quizzinfo
 
-func info() {
+func Infoquizz() {
 
 }

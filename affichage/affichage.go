@@ -23,6 +23,6 @@ func Choixquizz() {
 	fmt.Println("1 - Quizz Data")
 	fmt.Println("2 - Quizz Info")
 	fmt.Println("3 - Quizz Cyber")
-	fmt.Println("3 - 👋 Retour")
+	fmt.Println("4 - 👋 Retour")
 	Separator()
 }
