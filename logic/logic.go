@@ -6,24 +6,68 @@ import (
 )
 
 type User struct {
-	Name         string
-	ScoreQ1      int
-	ScoreQ2      int
-	ScoreQ3      int
-	Q1Percentage int
-	Q2Percentage int
-	Q3Percentage int
+	Name          string
+	ScoreQ1       int
+	NbQuestionsQ1 int
+	ScoreQ2       int
+	NbQuestionsQ2 int
+	ScoreQ3       int
+	NbQuestionsQ3 int
+	Q1Percentage  int
+	Q2Percentage  int
+	Q3Percentage  int
 }
 
 func InitUser() *User {
-	affichage.NomUser()
+	var username string
+	var valid bool
+	for {
+		var discard string
+		fmt.Scanln(&discard)
+		affichage.NomUser()
+		fmt.Scan(&username)
+		valid = true
+		result := []rune(username)
 
-	var userName string
-	fmt.Scan(&userName)
-	fmt.Println("Bienvenu :", userName)
+		// Vérification que le pseudo n'est pas vide et ne contient que des lettres
+		if len(result) == 0 {
+			fmt.Println("❌ Le pseudo ne peut pas être vide.")
+			valid = false
+			continue
+		}
+
+		// Vérification que chaque caractère est une lettre
+		for _, r := range result {
+			if r < 65 || (r > 90 && r < 97) || r > 122 {
+				fmt.Println("❌ Le pseudo ne doit contenir que des lettres.")
+				valid = false
+				break
+			}
+		}
+
+		// Si le pseudo est valide, on le formate (première lettre majuscule, le reste en minuscule)
+		if valid {
+			if result[0] >= 97 && result[0] <= 122 {
+				result[0] = result[0] - ('a' - 'A')
+			}
+			for i := 1; i < len(result); i++ {
+				if result[i] >= 65 && result[i] <= 90 {
+					result[i] = result[i] + ('a' - 'A')
+				}
+			}
+
+			// Assignation du pseudo au personnage
+			username = string(result)
+			// Sortie de la boucle
+			break
+		}
+	}
+	affichage.ClearScreen()
+	affichage.Separator()
+	fmt.Println("Bienvenu :", username)
 
 	return &User{
-		Name:         userName,
+		Name:         username,
 		ScoreQ1:      0,
 		ScoreQ2:      0,
 		ScoreQ3:      0,
@@ -36,19 +80,19 @@ func ScorePercentage(user *User, TotalScore int) {
 	if user.ScoreQ1 == 0 {
 		user.Q1Percentage = 0
 	} else {
-		user.Q1Percentage = (user.ScoreQ1 * 100) / TotalScore
+		user.Q1Percentage = (user.ScoreQ1 * 100) / user.NbQuestionsQ1
 	}
 
 	if user.ScoreQ2 == 0 {
 		user.Q2Percentage = 0
 	} else {
-		user.Q2Percentage = (user.ScoreQ2 * 100) / TotalScore
+		user.Q2Percentage = (user.ScoreQ2 * 100) / user.NbQuestionsQ2
 	}
 
 	if user.ScoreQ3 == 0 {
 		user.Q3Percentage = 0
 	} else {
-		user.Q3Percentage = (user.ScoreQ3 * 100) / TotalScore
+		user.Q3Percentage = (user.ScoreQ3 * 100) / user.NbQuestionsQ3
 	}
 }
 func UserStats(user *User) {
@@ -58,10 +102,11 @@ func UserStats(user *User) {
 	fmt.Println("Statistiques de l'utilisateur")
 	affichage.Separator()
 	fmt.Println("Nom :", user.Name)
-	fmt.Println("Score Quizz Informatique :", user.ScoreQ1)
-	fmt.Println("Score Quizz Cyber-Sécurité :", user.ScoreQ2)
-	fmt.Println("Score Quizz Data :", user.ScoreQ3)
+	fmt.Println("Score Quizz Informatique :", user.ScoreQ1, "/", user.NbQuestionsQ1)
+	fmt.Println("Score Quizz Cyber-Sécurité :", user.ScoreQ2, "/", user.NbQuestionsQ2)
+	fmt.Println("Score Quizz Data :", user.ScoreQ3, "/", user.NbQuestionsQ3)
 	fmt.Println("Score Total :", TotalScore)
+	fmt.Println("Nombre de questions répondues :", user.NbQuestionsQ1+user.NbQuestionsQ2+user.NbQuestionsQ3)
 	affichage.Separator()
 	fmt.Println("Tu as : ", user.Q1Percentage, "% de score en Informatique")
 	if user.Q1Percentage == 100 { //100 %
@@ -103,7 +148,6 @@ func UserStats(user *User) {
 	}
 	affichage.Separator()
 }
-
 func PréQuizz(nomQuizz string) bool { //Choix de commencer le quizz ou pas
 	MenuChoice := 0
 	for {
@@ -125,30 +169,85 @@ func PréQuizz(nomQuizz string) bool { //Choix de commencer le quizz ou pas
 		}
 	}
 }
-
-func QuestionnaireType(u *User, NomQuizz string, Questions []string, Choix []string, RépCorrecte []int) {
+func QuestionnaireType(u *User, NomQuizz string, Questions []string, Choix [][]string, RépCorrecte []int) {
 	//mettre : les stats de l'User, la liste des questions, les choix de réponses, la réponse correcte (le numéros de la réponse correcte et non l'index)
+	scoreSession := 0
 	for i := range Questions {
-		affichage.QuestionType(NomQuizz, i+1, Questions[i], Choix[0:4])
+		affichage.QuestionType(NomQuizz, i+1, Questions[i], Choix[i])
 		MenuChoice := 0
 		fmt.Scan(&MenuChoice)
-		if MenuChoice == RépCorrecte[i] {
+		if MenuChoice == RépCorrecte[i] { // Réponse correcte
 			affichage.ClearScreen()
-			affichage.BonneRéponse(Questions[i], Choix[0:4], RépCorrecte[i])
-
+			affichage.BonneRéponse(Questions[i], Choix[i], RépCorrecte[i])
+			AjoutScore(u, NomQuizz)
+			AjoutNbQuestions(u, NomQuizz)
+			scoreSession++
+			for {
+				fmt.Println("Tapper sur '0' pour continuer.")
+				MenuChoice := -1
+				fmt.Scan(&MenuChoice)
+				if MenuChoice == 0 {
+					affichage.ClearScreen()
+					break
+				} else {
+					affichage.Separator()
+					fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
+					affichage.Separator()
+				}
+			}
+		} else if MenuChoice != RépCorrecte[i] && MenuChoice <= 4 { // Réponse incorrecte
+			affichage.ClearScreen()
+			affichage.MauvaiseRéponse(Questions[i], Choix[i], MenuChoice, RépCorrecte[i])
+			AjoutNbQuestions(u, NomQuizz)
+			for {
+				fmt.Println("Tapper sur '0' pour continuer.")
+				MenuChoice := -1
+				fmt.Scan(&MenuChoice)
+				if MenuChoice == 0 {
+					affichage.ClearScreen()
+					break
+				} else {
+					affichage.Separator()
+					fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
+					affichage.Separator()
+				}
+			}
+		}
+	}
+	for {
+		affichage.ClearScreen()
+		affichage.FinQuizz(scoreSession, len(Questions))
+		fmt.Println("Tapper sur '0' pour continuer.")
+		MenuChoice := -1
+		fmt.Scan(&MenuChoice)
+		if MenuChoice == 0 {
+			affichage.ClearScreen()
+			break
 		} else {
-			// Réponse incorrecte
+			affichage.Separator()
+			fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
+			affichage.Separator()
 		}
 	}
 }
-
-func AjoutScore(u *User, NomQuizz string, Score int) {
+func AjoutScore(u *User, NomQuizz string) {
 	switch NomQuizz {
 	case "Informatique":
-		u.ScoreQ1 += Score
+		u.ScoreQ1++
 	case "Cyber-Sécurité":
-		u.ScoreQ2 += Score
+		u.ScoreQ2++
 	case "Data":
-		u.ScoreQ3 += Score
+		u.ScoreQ3++
+	}
+}
+
+func AjoutNbQuestions(u *User, NomQuizz string) {
+	switch NomQuizz {
+	case "Informatique":
+		u.NbQuestionsQ1++
+	case "Cyber-Sécurité":
+		u.NbQuestionsQ2++
+	case "Data":
+		u.NbQuestionsQ3++
 	}
 }

@@ -68,7 +68,7 @@ func Statistiques() {
 func PréQuizz(Nom string) {
 	Separator()
 	fmt.Printf("Début du quizz %s\n", Nom)
-	fmt.Printf("Êtes-vous sûr ?")
+	fmt.Println("Êtes-vous sûr ?")
 	Separator()
 	fmt.Println("1 - 👍  Oui ! Let's get this party rocking !")
 	fmt.Println("2 - 👎  Non, je veux choisir un autre quizz.")
@@ -81,8 +81,8 @@ func QuestionType(nomQuizz string, numQuestion int, question string, listeChoix 
 	Separator()
 	fmt.Println(question)
 	Separator()
-	for i, choix := range listeChoix {
-		fmt.Printf("%d - %s\n", i+1, choix)
+	for _, choix := range listeChoix {
+		fmt.Print(choix)
 	}
 	Separator()
 }
@@ -91,9 +91,30 @@ func BonneRéponse(question string, choix []string, répCorrecte int) {
 	Separator()
 	fmt.Println("✅ Bonne réponse !")
 	Separator()
-	fmt.Println("La réponse à la question :")
+	fmt.Println("La question :")
 	fmt.Println(question)
-	fmt.Println("Est : ")
+	fmt.Println("Votre réponse : ")
 	fmt.Println(choix[répCorrecte-1])
+	Separator()
+}
+
+func MauvaiseRéponse(question string, choix []string, choixJoueur int, répCorrecte int) {
+	Separator()
+	fmt.Println("❌ Mauvaise réponse !")
+	Separator()
+	fmt.Println("La question :")
+	fmt.Println(question)
+	fmt.Println("Votre réponse : ")
+	fmt.Println(choix[choixJoueur-1])
+	fmt.Println("La bonne réponse est : ")
+	fmt.Println(choix[répCorrecte-1])
+	Separator()
+}
+
+func FinQuizz(scoreSession int, totalQuestions int) {
+	Separator()
+	fmt.Println("🎉 Fin du quizz ! 🎉")
+	Separator()
+	fmt.Printf("Votre score : %d/%d\n", scoreSession, totalQuestions)
 	Separator()
 }
