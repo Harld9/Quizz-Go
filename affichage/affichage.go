@@ -64,3 +64,36 @@ func Statistiques() {
 	fmt.Println("Statistiques de l'utilisateur")
 	Separator()
 }
+
+func PréQuizz(Nom string) {
+	Separator()
+	fmt.Printf("Début du quizz %s\n", Nom)
+	fmt.Printf("Êtes-vous sûr ?")
+	Separator()
+	fmt.Println("1 - 👍  Oui ! Let's get this party rocking !")
+	fmt.Println("2 - 👎  Non, je veux choisir un autre quizz.")
+	Separator()
+}
+
+func QuestionType(nomQuizz string, numQuestion int, question string, listeChoix []string) {
+	Separator()
+	fmt.Printf("Quizz %s - Question n°%d\n", nomQuizz, numQuestion)
+	Separator()
+	fmt.Println(question)
+	Separator()
+	for i, choix := range listeChoix {
+		fmt.Printf("%d - %s\n", i+1, choix)
+	}
+	Separator()
+}
+
+func BonneRéponse(question string, choix []string, répCorrecte int) {
+	Separator()
+	fmt.Println("✅ Bonne réponse !")
+	Separator()
+	fmt.Println("La réponse à la question :")
+	fmt.Println(question)
+	fmt.Println("Est : ")
+	fmt.Println(choix[répCorrecte-1])
+	Separator()
+}

@@ -1,6 +1,7 @@
 package main
 
 import (
+	info "Quizz-Go/QuizzInfo"
 	"Quizz-Go/affichage"
 	"Quizz-Go/logic"
 	"fmt"
@@ -37,7 +38,7 @@ func main() {
 						case 1:
 							affichage.ClearScreen()
 							fmt.Println("Quizz Informatique")
-							// Appeler la fonction du quizz info
+							info.QuizzInfo(User)
 						case 2:
 							affichage.ClearScreen()
 							fmt.Println("Quizz Cyber-Sécurité")

@@ -32,8 +32,7 @@ func InitUser() *User {
 		Q3Percentage: 0,
 	}
 }
-func ScorePercentage(user *User) {
-	var TotalScore int = user.ScoreQ1 + user.ScoreQ2 + user.ScoreQ3
+func ScorePercentage(user *User, TotalScore int) {
 	if user.ScoreQ1 == 0 {
 		user.Q1Percentage = 0
 	} else {
@@ -54,7 +53,7 @@ func ScorePercentage(user *User) {
 }
 func UserStats(user *User) {
 	var TotalScore int = user.ScoreQ1 + user.ScoreQ2 + user.ScoreQ3
-	ScorePercentage(user)
+	ScorePercentage(user, TotalScore)
 	affichage.Separator()
 	fmt.Println("Statistiques de l'utilisateur")
 	affichage.Separator()
@@ -103,4 +102,53 @@ func UserStats(user *User) {
 		fmt.Println("MDR ! Tu pues du fion en Data ! Retourne dans les jupettes de ChatGPT tu comprendra peut être comment ça marche !")
 	}
 	affichage.Separator()
+}
+
+func PréQuizz(nomQuizz string) bool { //Choix de commencer le quizz ou pas
+	MenuChoice := 0
+	for {
+		affichage.PréQuizz(nomQuizz)
+		fmt.Scan(&MenuChoice)
+		switch MenuChoice {
+		case 1:
+			affichage.ClearScreen()
+			fmt.Printf("Lancement du quizz %s...\n", nomQuizz)
+			affichage.ClearScreen()
+			return true
+
+		case 2:
+			affichage.ClearScreen()
+			return false
+		default:
+			affichage.ClearScreen()
+			fmt.Println("Choix invalide, veuillez réessayer.")
+		}
+	}
+}
+
+func QuestionnaireType(u *User, NomQuizz string, Questions []string, Choix []string, RépCorrecte []int) {
+	//mettre : les stats de l'User, la liste des questions, les choix de réponses, la réponse correcte (le numéros de la réponse correcte et non l'index)
+	for i := range Questions {
+		affichage.QuestionType(NomQuizz, i+1, Questions[i], Choix[0:4])
+		MenuChoice := 0
+		fmt.Scan(&MenuChoice)
+		if MenuChoice == RépCorrecte[i] {
+			affichage.ClearScreen()
+			affichage.BonneRéponse(Questions[i], Choix[0:4], RépCorrecte[i])
+
+		} else {
+			// Réponse incorrecte
+		}
+	}
+}
+
+func AjoutScore(u *User, NomQuizz string, Score int) {
+	switch NomQuizz {
+	case "Informatique":
+		u.ScoreQ1 += Score
+	case "Cyber-Sécurité":
+		u.ScoreQ2 += Score
+	case "Data":
+		u.ScoreQ3 += Score
+	}
 }
