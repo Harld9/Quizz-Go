@@ -183,36 +183,12 @@ func QuestionnaireType(u *User, NomQuizz string, Questions []string, Choix [][]s
 				AjoutScore(u, NomQuizz)
 				AjoutNbQuestions(u, NomQuizz)
 				scoreSession++
-				for {
-					fmt.Println("Tapper sur '0' pour continuer.")
-					MenuChoice := -1
-					fmt.Scan(&MenuChoice)
-					if MenuChoice == 0 {
-						affichage.ClearScreen()
-						break
-					} else {
-						affichage.Separator()
-						fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
-						affichage.Separator()
-					}
-				}
+				break
 			} else if MenuChoice != RépCorrecte[i] && MenuChoice <= 4 && MenuChoice >= 1 { // Réponse incorrecte
 				affichage.ClearScreen()
 				affichage.MauvaiseRéponse(Questions[i], Choix[i], MenuChoice, RépCorrecte[i])
 				AjoutNbQuestions(u, NomQuizz)
-				for {
-					fmt.Println("Tapper sur '0' pour continuer.")
-					MenuChoice := -1
-					fmt.Scan(&MenuChoice)
-					if MenuChoice == 0 {
-						affichage.ClearScreen()
-						break
-					} else {
-						affichage.Separator()
-						fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
-						affichage.Separator()
-					}
-				}
+				break
 			}
 		}
 	}
