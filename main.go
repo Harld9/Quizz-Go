@@ -1,6 +1,7 @@
 package main
 
 import (
+	quizzcyber "Quizz-Go/QuizzCyber"
 	info "Quizz-Go/QuizzInfo"
 	"Quizz-Go/affichage"
 	"Quizz-Go/logic"
@@ -42,7 +43,7 @@ func main() {
 						case 2:
 							affichage.ClearScreen()
 							fmt.Println("Quizz Cyber-Sécurité")
-							// Appeler la fonction du quizz cyber sécurité
+							quizzcyber.QuestionCyberGlobal()
 						case 3:
 							affichage.ClearScreen()
 							fmt.Println("Quizz Data")

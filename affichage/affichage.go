@@ -24,7 +24,7 @@ func ClearScreen() {
 
 func MenuAccueil() {
 	Separator()
-	fmt.Println("Bienvenue au Quiz Go")
+	fmt.Println("Bienvenue au Quizz Go")
 	Separator()
 	fmt.Println("1 - ▶️  Commencer une nouvelle partie")
 	fmt.Println("2 - 🪺  On verra plus tard")
@@ -116,5 +116,16 @@ func FinQuizz(scoreSession int, totalQuestions int) {
 	fmt.Println("🎉 Fin du quizz ! 🎉")
 	Separator()
 	fmt.Printf("Votre score : %d/%d\n", scoreSession, totalQuestions)
+	Separator()
+}
+
+func Choixquizz() {
+	Separator()
+	fmt.Println("Bienvenue au Quizz Go")
+	Separator()
+	fmt.Println("1 - Quizz Data")
+	fmt.Println("2 - Quizz Info")
+	fmt.Println("3 - Quizz Cyber")
+	fmt.Println("4 - 👋 Retour")
 	Separator()
 }
