@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"Quizz-Go/logic"
 	"html/template"
 	"net/http"
 )
@@ -8,6 +9,7 @@ import (
 type PageData struct {
 	Title   string
 	Message string
+	User    *logic.User
 }
 
 // renderTemplate est une fonction utilitaire pour afficher un template HTML avec des données dynamiques
@@ -30,7 +32,7 @@ func Pinfo(w http.ResponseWriter, r *http.Request) {
 		Title:   "Accueil",
 		Message: "Bienvenue Au Jeu Puissance 4 🎉",
 	}
-	tmpl := template.Must(template.ParseFiles("template/index.html"))
+	tmpl := template.Must(template.ParseFiles("template/QuizzInfo.html"))
 	tmpl.Execute(w, data)
 }
 
@@ -39,7 +41,7 @@ func Pcyber(w http.ResponseWriter, r *http.Request) {
 		Title:   "Accueil",
 		Message: "Bienvenue Au Jeu Puissance 4 🎉",
 	}
-	tmpl := template.Must(template.ParseFiles("template/index.html"))
+	tmpl := template.Must(template.ParseFiles("template/QuizzCyber.html"))
 	tmpl.Execute(w, data)
 }
 
@@ -48,6 +50,6 @@ func Pdata(w http.ResponseWriter, r *http.Request) {
 		Title:   "Accueil",
 		Message: "Bienvenue Au Jeu Puissance 4 🎉",
 	}
-	tmpl := template.Must(template.ParseFiles("template/index.html"))
+	tmpl := template.Must(template.ParseFiles("template/QuizzData.html"))
 	tmpl.Execute(w, data)
 }

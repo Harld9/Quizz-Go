@@ -12,6 +12,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .navbar {
   position: fixed;
   top: 0;
@@ -25,11 +26,9 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
   z-index: 100;
   background: #ffd700;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 77, 77, 1) 0%,
-    rgba(255, 215, 0, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 77, 77, 1) 0%,
+      rgba(255, 215, 0, 1) 100%);
   border-bottom: white solid 1px;
 }
 
@@ -260,6 +259,7 @@ label {
 .Presentation {
   text-align: left;
 }
+
 .text-image-container {
   display: flex;
   justify-content: space-between;
@@ -313,12 +313,14 @@ header {
   line-height: 1.2;
 }
 
-.h11{ text-align: center;
+.h11 {
+  text-align: center;
   padding: 10px 0;
-  margin-top: 50px;}
+  margin-top: 50px;
+}
 
-  
-a{
+
+a {
   text-decoration: none;
 }
 
@@ -385,4 +387,14 @@ a{
 .mess {
   font-size: 1.3em;
   margin-bottom: 20px;
+}
+
+.boutonsquizz {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  list-style-type: none;
 }

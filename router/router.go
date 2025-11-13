@@ -11,9 +11,9 @@ func New() *http.ServeMux {
 
 	// Routes de ton app
 	mux.HandleFunc("/", controller.Home)
-	mux.HandleFunc("/leaderboard", controller.Pinfo)
-	mux.HandleFunc("/contact", controller.Pcyber)
-	mux.HandleFunc("/jeu", controller.Pdata)
+	mux.HandleFunc("/QuizzInfo", controller.Pinfo)
+	mux.HandleFunc("/QuizzCyber", controller.Pcyber)
+	mux.HandleFunc("/QuizzData", controller.Pdata)
 
 	// Ajout des fichiers statiques
 	fileServer := http.FileServer(http.Dir("./static"))
