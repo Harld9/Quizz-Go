@@ -5,6 +5,8 @@ import (
 	"fmt"
 )
 
+var compteurbonnereponse int
+
 type Question struct {
 	Texte   string
 	Choix   [4]string
@@ -21,6 +23,186 @@ func Cyberquizz() {
 	fmt.Println("4 - Le Gardien du Wifi (Très dur)")
 	fmt.Println("5 - Le Maître du Cyber-Kung-Fu (Hardcore)")
 	affichage.Separator()
+}
+func QuestionCyberGlobal() {
+	menuChoice := 0
+	fmt.Print("\033[H\033[2J")
+	Cyberquizz()
+	fmt.Scan(&menuChoice)
+	switch menuChoice {
+	case 1:
+		compteurbonnereponse = 0
+		fmt.Print("\033[H\033[2J")
+		for i := range QuestionsFacile {
+			for {
+				fmt.Println("")
+				fmt.Println(QuestionsFacile[i].Texte)
+				affichage.Separator()
+				fmt.Println(QuestionsFacile[i].Choix[0])
+				fmt.Println(QuestionsFacile[i].Choix[1])
+				fmt.Println(QuestionsFacile[i].Choix[2])
+				fmt.Println(QuestionsFacile[i].Choix[3])
+				fmt.Println("")
+				fmt.Scan(&menuChoice)
+				if menuChoice < 1 || menuChoice > 4 {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Il ne se passe rien... Choix invalide.")
+				}
+				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+					break
+				} else if menuChoice == QuestionsFacile[i].Correct {
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					compteurbonnereponse++
+					break
+				}
+			}
+
+		}
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+
+	case 2:
+		compteurbonnereponse = 0
+		fmt.Print("\033[H\033[2J")
+		for i := range QuestionsMoyen {
+			for {
+				fmt.Println("")
+				fmt.Println(QuestionsMoyen[i].Texte)
+				affichage.Separator()
+				fmt.Println(QuestionsMoyen[i].Choix[0])
+				fmt.Println(QuestionsMoyen[i].Choix[1])
+				fmt.Println(QuestionsMoyen[i].Choix[2])
+				fmt.Println(QuestionsMoyen[i].Choix[3])
+				fmt.Println("")
+				fmt.Scan(&menuChoice)
+				if menuChoice < 1 || menuChoice > 4 {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Il ne se passe rien... Choix invalide.")
+				}
+				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+					break
+				} else if menuChoice == QuestionsFacile[i].Correct {
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					compteurbonnereponse++
+					break
+				}
+			}
+
+		}
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+
+	case 3:
+		compteurbonnereponse = 0
+		fmt.Print("\033[H\033[2J")
+		for i := range QuestionsDifficile {
+			for {
+				fmt.Println("")
+				fmt.Println(QuestionsDifficile[i].Texte)
+				affichage.Separator()
+				fmt.Println(QuestionsDifficile[i].Choix[0])
+				fmt.Println(QuestionsDifficile[i].Choix[1])
+				fmt.Println(QuestionsDifficile[i].Choix[2])
+				fmt.Println(QuestionsDifficile[i].Choix[3])
+				fmt.Println("")
+				fmt.Scan(&menuChoice)
+				if menuChoice < 1 || menuChoice > 4 {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Il ne se passe rien... Choix invalide.")
+				}
+				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+					break
+				} else if menuChoice == QuestionsFacile[i].Correct {
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					compteurbonnereponse++
+					break
+				}
+			}
+
+		}
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+
+	case 4:
+		compteurbonnereponse = 0
+		fmt.Print("\033[H\033[2J")
+		for i := range QuestionsTresDifficile {
+			for {
+				fmt.Println("")
+				fmt.Println(QuestionsTresDifficile[i].Texte)
+				affichage.Separator()
+				fmt.Println(QuestionsTresDifficile[i].Choix[0])
+				fmt.Println(QuestionsTresDifficile[i].Choix[1])
+				fmt.Println(QuestionsTresDifficile[i].Choix[2])
+				fmt.Println(QuestionsTresDifficile[i].Choix[3])
+				fmt.Println("")
+				fmt.Scan(&menuChoice)
+				if menuChoice < 1 || menuChoice > 4 {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Il ne se passe rien... Choix invalide.")
+				}
+				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+					break
+				} else if menuChoice == QuestionsFacile[i].Correct {
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					compteurbonnereponse++
+					break
+				}
+			}
+
+		}
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+
+	case 5:
+		compteurbonnereponse = 0
+		fmt.Print("\033[H\033[2J")
+		for i := range QuestionsHardcore {
+			for {
+				fmt.Println("")
+				fmt.Println(QuestionsHardcore[i].Texte)
+				affichage.Separator()
+				fmt.Println(QuestionsHardcore[i].Choix[0])
+				fmt.Println(QuestionsHardcore[i].Choix[1])
+				fmt.Println(QuestionsHardcore[i].Choix[2])
+				fmt.Println(QuestionsHardcore[i].Choix[3])
+				fmt.Println("")
+				fmt.Scan(&menuChoice)
+				if menuChoice < 1 || menuChoice > 4 {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Il ne se passe rien... Choix invalide.")
+				}
+				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					fmt.Print("\033[H\033[2J")
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+					break
+				} else if menuChoice == QuestionsFacile[i].Correct {
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					compteurbonnereponse++
+					break
+				}
+			}
+
+		}
+		fmt.Print("\033[H\033[2J")
+		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+
+	case 6:
+		fmt.Print("\033[H\033[2J")
+		if menuChoice == 6 {
+			menuChoice = 0
+			return
+		}
+
+	}
 }
 
 // Niveau facile
@@ -128,7 +310,7 @@ var QuestionsFacile = []Question{
 }
 
 // Niveau Moyen
-var questionsMoyen = []Question{
+var QuestionsMoyen = []Question{
 	{
 		Texte: "Qu'est-ce qu'un VPN ?",
 		Choix: [4]string{
@@ -232,7 +414,7 @@ var questionsMoyen = []Question{
 }
 
 // Niveau Difficile
-var questionsDifficile = []Question{
+var QuestionsDifficile = []Question{
 	{
 		Texte: "Qu'est-ce qu'une attaque par 'man-in-the-middle' ?",
 		Choix: [4]string{
@@ -336,7 +518,7 @@ var questionsDifficile = []Question{
 }
 
 // Niveau Très Difficile
-var questionsTresDifficile = []Question{
+var QuestionsTresDifficile = []Question{
 	{
 		Texte: "Qu'est-ce qu'un 'buffer overflow' ?",
 		Choix: [4]string{
@@ -440,7 +622,7 @@ var questionsTresDifficile = []Question{
 }
 
 // Niveau Hardcor
-var questionsHardcore = []Question{
+var QuestionsHardcore = []Question{
 	{
 		Texte: "Qu'est-ce qu'une attaque par 'Return-Oriented Programming (ROP)' ?",
 		Choix: [4]string{

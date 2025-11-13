@@ -1,77 +1,89 @@
 package main
 
 import (
+	quizzcyber "Quizz-Go/QuizzCyber"
+	info "Quizz-Go/QuizzInfo"
 	"Quizz-Go/affichage"
-	"Quizz-Go/quizzcyber"
+	"Quizz-Go/logic"
 	"fmt"
 	"os"
-	"time"
 )
 
 func main() {
 
 	// Initialisation du choix du menu
 	var menuChoice int
+	affichage.ClearScreen()
 	// Boucle principale du jeu
 	for {
-
-		affichage.AffichageMenu()
+		menuChoice = 0
+		// Affichage du menu de démarrage
+		affichage.MenuAccueil()
 		fmt.Scan(&menuChoice)
 		switch menuChoice {
 		case 1:
-			fmt.Print("\033[H\033[2J")
-
-			affichage.Choixquizz()
-			fmt.Scan(&menuChoice)
-			switch menuChoice {
-			case 1: //Data
-			//case 2: //Info
-			case 3:
-				fmt.Print("\033[H\033[2J")
-				quizzcyber.Cyberquizz()
+			affichage.ClearScreen()
+			User := logic.InitUser()
+			for {
+				menuChoice = 0
+				affichage.MenuPrincipale()
 				fmt.Scan(&menuChoice)
 				switch menuChoice {
 				case 1:
-					compteureponse := 0
-					for x := 0; x <= len(quizzcyber.QuestionsFacile); x++ {
-						fmt.Print("\033[H\033[2J")
-						fmt.Println(quizzcyber.QuestionsFacile[x].Texte)
-						affichage.Separator()
-						fmt.Println(quizzcyber.QuestionsFacile[x].Choix[0])
-						fmt.Println(quizzcyber.QuestionsFacile[x].Choix[1])
-						fmt.Println(quizzcyber.QuestionsFacile[x].Choix[2])
-						fmt.Println(quizzcyber.QuestionsFacile[x].Choix[3])
-						fmt.Scan(&menuChoice)
-						if menuChoice == quizzcyber.QuestionsFacile[x].Correct {
-							fmt.Println("Bravo tu as eu la bonne réponse !")
-							compteureponse++
-						} else {
-							fmt.Println("Nul !")
-						}
-						fmt.Print("\033[H\033[2J")
-					}
-					fmt.Println("Tu as fini le Quizz ! avec ", compteureponse, " réponses justes sur 10 !")
-				case 4:
-					fmt.Print("\033[H\033[2J")
-					if menuChoice == 4 {
+					affichage.ClearScreen()
+					for {
 						menuChoice = 0
-						return
+						affichage.MenuQuizz()
+						fmt.Scan(&menuChoice)
+						switch menuChoice {
+						case 1:
+							affichage.ClearScreen()
+							fmt.Println("Quizz Informatique")
+							info.QuizzInfo(User)
+						case 2:
+							affichage.ClearScreen()
+							fmt.Println("Quizz Cyber-Sécurité")
+							quizzcyber.QuestionCyberGlobal()
+						case 3:
+							affichage.ClearScreen()
+							fmt.Println("Quizz Data")
+							// Appeler la fonction du quizz data
+						case 4:
+							affichage.ClearScreen()
+							menuChoice = 4
+						default:
+							affichage.ClearScreen()
+							fmt.Println("Choix invalide, veuillez réessayer.")
+						}
+						if menuChoice == 4 {
+							break
+						}
 					}
-
-				case 2: //Crédits
-					//case 3:
-					// Quitter le jeu
-					os.Exit(0)
+				case 2:
+					affichage.ClearScreen()
+					logic.UserStats(User)
+				case 3:
+					affichage.ClearScreen()
+					menuChoice = 3
 				default:
-
-					fmt.Print("\033[H\033[2J")
-
-					time.Sleep(1 * time.Second)
-
-					// Choix invalide
-					fmt.Printf("\n❌ Il ne se passe rien... Choix invalide.\n")
+					affichage.ClearScreen()
+					fmt.Println("Choix invalide, veuillez réessayer.")
+				}
+				if menuChoice == 3 {
+					break
 				}
 			}
+		case 2:
+			affichage.ClearScreen()
+			fmt.Println("On verra ...")
+			fmt.Println("Florian est un gros nul en Go 😂 et Harold adore sa copine avec une baguette de 7cm attaché sur elle *Miam*")
+		case 3:
+			affichage.ClearScreen()
+			fmt.Println("Adios cheerios !")
+			os.Exit(0)
+		default:
+			affichage.ClearScreen()
+			fmt.Println("Choix invalide, veuillez réessayer.")
 		}
 	}
 }
