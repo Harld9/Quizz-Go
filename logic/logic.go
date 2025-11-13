@@ -173,43 +173,45 @@ func QuestionnaireType(u *User, NomQuizz string, Questions []string, Choix [][]s
 	//mettre : les stats de l'User, la liste des questions, les choix de réponses, la réponse correcte (le numéros de la réponse correcte et non l'index)
 	scoreSession := 0
 	for i := range Questions {
-		affichage.QuestionType(NomQuizz, i+1, Questions[i], Choix[i])
-		MenuChoice := 0
-		fmt.Scan(&MenuChoice)
-		if MenuChoice == RépCorrecte[i] { // Réponse correcte
-			affichage.ClearScreen()
-			affichage.BonneRéponse(Questions[i], Choix[i], RépCorrecte[i])
-			AjoutScore(u, NomQuizz)
-			AjoutNbQuestions(u, NomQuizz)
-			scoreSession++
-			for {
-				fmt.Println("Tapper sur '0' pour continuer.")
-				MenuChoice := -1
-				fmt.Scan(&MenuChoice)
-				if MenuChoice == 0 {
-					affichage.ClearScreen()
-					break
-				} else {
-					affichage.Separator()
-					fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
-					affichage.Separator()
+		for {
+			affichage.QuestionType(NomQuizz, i+1, Questions[i], Choix[i])
+			MenuChoice := 0
+			fmt.Scan(&MenuChoice)
+			if MenuChoice == RépCorrecte[i] { // Réponse correcte
+				affichage.ClearScreen()
+				affichage.BonneRéponse(Questions[i], Choix[i], RépCorrecte[i])
+				AjoutScore(u, NomQuizz)
+				AjoutNbQuestions(u, NomQuizz)
+				scoreSession++
+				for {
+					fmt.Println("Tapper sur '0' pour continuer.")
+					MenuChoice := -1
+					fmt.Scan(&MenuChoice)
+					if MenuChoice == 0 {
+						affichage.ClearScreen()
+						break
+					} else {
+						affichage.Separator()
+						fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
+						affichage.Separator()
+					}
 				}
-			}
-		} else if MenuChoice != RépCorrecte[i] && MenuChoice <= 4 { // Réponse incorrecte
-			affichage.ClearScreen()
-			affichage.MauvaiseRéponse(Questions[i], Choix[i], MenuChoice, RépCorrecte[i])
-			AjoutNbQuestions(u, NomQuizz)
-			for {
-				fmt.Println("Tapper sur '0' pour continuer.")
-				MenuChoice := -1
-				fmt.Scan(&MenuChoice)
-				if MenuChoice == 0 {
-					affichage.ClearScreen()
-					break
-				} else {
-					affichage.Separator()
-					fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
-					affichage.Separator()
+			} else if MenuChoice != RépCorrecte[i] && MenuChoice <= 4 && MenuChoice >= 1 { // Réponse incorrecte
+				affichage.ClearScreen()
+				affichage.MauvaiseRéponse(Questions[i], Choix[i], MenuChoice, RépCorrecte[i])
+				AjoutNbQuestions(u, NomQuizz)
+				for {
+					fmt.Println("Tapper sur '0' pour continuer.")
+					MenuChoice := -1
+					fmt.Scan(&MenuChoice)
+					if MenuChoice == 0 {
+						affichage.ClearScreen()
+						break
+					} else {
+						affichage.Separator()
+						fmt.Println("Bravo ! Tu n'a pas mis 0 ! Sais-tu ce que c'est le nombre 0 ? Demande à ton voisin tu verras c'est simple !")
+						affichage.Separator()
+					}
 				}
 			}
 		}
