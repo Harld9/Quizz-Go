@@ -2,6 +2,7 @@ package quizzcyber
 
 import (
 	"Quizz-Go/affichage"
+	"Quizz-Go/logic"
 	"fmt"
 )
 
@@ -22,17 +23,19 @@ func Cyberquizz() {
 	fmt.Println("3 - Le Surfeur Méfiant (Dur)")
 	fmt.Println("4 - Le Gardien du Wifi (Très dur)")
 	fmt.Println("5 - Le Maître du Cyber-Kung-Fu (Hardcore)")
+	fmt.Println("6 - 👋 Retour")
 	affichage.Separator()
 }
-func QuestionCyberGlobal() {
+func QuestionCyberGlobal(u *logic.User) {
 	menuChoice := 0
-	fmt.Print("\033[H\033[2J")
+	affichage.ClearScreen()
 	Cyberquizz()
 	fmt.Scan(&menuChoice)
 	switch menuChoice {
+	//Quizz Cyber Facile
 	case 1:
 		compteurbonnereponse = 0
-		fmt.Print("\033[H\033[2J")
+		affichage.ClearScreen()
 		for i := range QuestionsFacile {
 			for {
 				fmt.Println("")
@@ -45,27 +48,31 @@ func QuestionCyberGlobal() {
 				fmt.Println("")
 				fmt.Scan(&menuChoice)
 				if menuChoice < 1 || menuChoice > 4 {
-					fmt.Print("\033[H\033[2J")
+					affichage.ClearScreen()
 					fmt.Println("Il ne se passe rien... Choix invalide.")
 				}
 				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
-					fmt.Print("\033[H\033[2J")
+					affichage.ClearScreen()
 					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
 				} else if menuChoice == QuestionsFacile[i].Correct {
-					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
 					compteurbonnereponse++
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					logic.AjoutScore(u, "Cyber-Sécurité")
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
 				}
 			}
 
 		}
-		fmt.Print("\033[H\033[2J")
-		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+		affichage.ClearScreen()
+		affichage.FinQuizz(compteurbonnereponse, 10)
 
+	//Quizz Cyber Moyen
 	case 2:
 		compteurbonnereponse = 0
-		fmt.Print("\033[H\033[2J")
+		affichage.ClearScreen()
 		for i := range QuestionsMoyen {
 			for {
 				fmt.Println("")
@@ -78,27 +85,31 @@ func QuestionCyberGlobal() {
 				fmt.Println("")
 				fmt.Scan(&menuChoice)
 				if menuChoice < 1 || menuChoice > 4 {
-					fmt.Print("\033[H\033[2J")
+					affichage.ClearScreen()
 					fmt.Println("Il ne se passe rien... Choix invalide.")
 				}
-				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
-					fmt.Print("\033[H\033[2J")
-					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+				if menuChoice != QuestionsMoyen[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					affichage.ClearScreen()
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsMoyen[i].Correct)
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
-				} else if menuChoice == QuestionsFacile[i].Correct {
-					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+				} else if menuChoice == QuestionsMoyen[i].Correct {
 					compteurbonnereponse++
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					logic.AjoutScore(u, "Cyber-Sécurité")
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
 				}
 			}
 
 		}
-		fmt.Print("\033[H\033[2J")
-		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+		affichage.ClearScreen()
+		affichage.FinQuizz(compteurbonnereponse, 10)
 
+	//Quizz Cyber Difficile
 	case 3:
 		compteurbonnereponse = 0
-		fmt.Print("\033[H\033[2J")
+		affichage.ClearScreen()
 		for i := range QuestionsDifficile {
 			for {
 				fmt.Println("")
@@ -111,27 +122,30 @@ func QuestionCyberGlobal() {
 				fmt.Println("")
 				fmt.Scan(&menuChoice)
 				if menuChoice < 1 || menuChoice > 4 {
-					fmt.Print("\033[H\033[2J")
+					affichage.ClearScreen()
 					fmt.Println("Il ne se passe rien... Choix invalide.")
 				}
-				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
-					fmt.Print("\033[H\033[2J")
-					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+				if menuChoice != QuestionsDifficile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					affichage.ClearScreen()
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsDifficile[i].Correct)
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
-				} else if menuChoice == QuestionsFacile[i].Correct {
-					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+				} else if menuChoice == QuestionsDifficile[i].Correct {
 					compteurbonnereponse++
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					logic.AjoutScore(u, "Cyber-Sécurité")
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
 				}
 			}
-
 		}
-		fmt.Print("\033[H\033[2J")
-		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+		affichage.ClearScreen()
+		affichage.FinQuizz(compteurbonnereponse, 10)
 
+	//Quizz Cyber Tres Difficile
 	case 4:
 		compteurbonnereponse = 0
-		fmt.Print("\033[H\033[2J")
+		affichage.ClearScreen()
 		for i := range QuestionsTresDifficile {
 			for {
 				fmt.Println("")
@@ -144,27 +158,31 @@ func QuestionCyberGlobal() {
 				fmt.Println("")
 				fmt.Scan(&menuChoice)
 				if menuChoice < 1 || menuChoice > 4 {
-					fmt.Print("\033[H\033[2J")
+					affichage.ClearScreen()
 					fmt.Println("Il ne se passe rien... Choix invalide.")
 				}
-				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
-					fmt.Print("\033[H\033[2J")
-					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+				if menuChoice != QuestionsTresDifficile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					affichage.ClearScreen()
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsTresDifficile[i].Correct)
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
-				} else if menuChoice == QuestionsFacile[i].Correct {
-					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+				} else if menuChoice == QuestionsTresDifficile[i].Correct {
 					compteurbonnereponse++
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					logic.AjoutScore(u, "Cyber-Sécurité")
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
 				}
 			}
 
 		}
-		fmt.Print("\033[H\033[2J")
-		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+		affichage.ClearScreen()
+		affichage.FinQuizz(compteurbonnereponse, 10)
 
+	//Quizz Cyber Hardcore
 	case 5:
 		compteurbonnereponse = 0
-		fmt.Print("\033[H\033[2J")
+		affichage.ClearScreen()
 		for i := range QuestionsHardcore {
 			for {
 				fmt.Println("")
@@ -177,26 +195,29 @@ func QuestionCyberGlobal() {
 				fmt.Println("")
 				fmt.Scan(&menuChoice)
 				if menuChoice < 1 || menuChoice > 4 {
-					fmt.Print("\033[H\033[2J")
+					affichage.ClearScreen()
 					fmt.Println("Il ne se passe rien... Choix invalide.")
 				}
-				if menuChoice != QuestionsFacile[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
-					fmt.Print("\033[H\033[2J")
-					fmt.Println("Faux ! La bonne réponse est :", QuestionsFacile[i].Correct)
+				if menuChoice != QuestionsHardcore[i].Correct && (menuChoice >= 1 && menuChoice <= 4) {
+					affichage.ClearScreen()
+					fmt.Println("Faux ! La bonne réponse est :", QuestionsHardcore[i].Correct)
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
-				} else if menuChoice == QuestionsFacile[i].Correct {
-					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+				} else if menuChoice == QuestionsHardcore[i].Correct {
 					compteurbonnereponse++
+					fmt.Println("Yeahhh ! Tu as eu la bonne réponse !")
+					logic.AjoutScore(u, "Cyber-Sécurité")
+					logic.AjoutNbQuestions(u, "Cyber-Sécurité")
 					break
 				}
 			}
 
 		}
-		fmt.Print("\033[H\033[2J")
-		fmt.Println("Bravo tu as eu", compteurbonnereponse, "sur 10 !")
+		affichage.ClearScreen()
+		affichage.FinQuizz(compteurbonnereponse, 10)
 
 	case 6:
-		fmt.Print("\033[H\033[2J")
+		affichage.ClearScreen()
 		if menuChoice == 6 {
 			menuChoice = 0
 			return
