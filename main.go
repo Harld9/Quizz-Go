@@ -43,7 +43,7 @@ func main() {
 						case 2:
 							affichage.ClearScreen()
 							fmt.Println("Quizz Cyber-Sécurité")
-							quizzcyber.QuestionCyberGlobal()
+							quizzcyber.QuestionCyberGlobal(User)
 						case 3:
 							affichage.ClearScreen()
 							fmt.Println("Quizz Data")
