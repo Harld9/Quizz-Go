@@ -2,6 +2,7 @@ package main
 
 import (
 	quizzcyber "Quizz-Go/QuizzCyber"
+	data "Quizz-Go/QuizzData"
 	info "Quizz-Go/QuizzInfo"
 	"Quizz-Go/affichage"
 	"Quizz-Go/logic"
@@ -47,7 +48,7 @@ func main() {
 						case 3:
 							affichage.ClearScreen()
 							fmt.Println("Quizz Data")
-							// Appeler la fonction du quizz data
+							data.QuizzData(User)
 						case 4:
 							affichage.ClearScreen()
 							menuChoice = 4
