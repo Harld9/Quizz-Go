@@ -55,7 +55,7 @@ func MenuQuizz() {
 
 func NomUser() {
 	Separator()
-	fmt.Println("Veuillez entrer votre nom :")
+	fmt.Println("Entres ton nom :")
 	Separator()
 }
 
@@ -68,7 +68,7 @@ func Statistiques() {
 func PréQuizz(Nom string) {
 	Separator()
 	fmt.Printf("Début du quizz %s\n", Nom)
-	fmt.Println("Êtes-vous sûr ?")
+	fmt.Println("Es-tu sûr ?")
 	Separator()
 	fmt.Println("1 - 👍  Oui ! Let's get this party rocking !")
 	fmt.Println("2 - 👎  Non, je veux choisir un autre quizz.")
@@ -93,7 +93,7 @@ func BonneRéponse(question string, choix []string, répCorrecte int) {
 	Separator()
 	fmt.Println("La question :")
 	fmt.Println(question)
-	fmt.Println("Votre réponse : ")
+	fmt.Println("Ta réponse : ")
 	fmt.Println(choix[répCorrecte-1])
 	Separator()
 }
@@ -104,7 +104,7 @@ func MauvaiseRéponse(question string, choix []string, choixJoueur int, répCorr
 	Separator()
 	fmt.Println("La question :")
 	fmt.Println(question)
-	fmt.Println("Votre réponse : ")
+	fmt.Println("Ta réponse : ")
 	fmt.Println(choix[choixJoueur-1])
 	fmt.Println("La bonne réponse est : ")
 	fmt.Println(choix[répCorrecte-1])
