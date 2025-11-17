@@ -165,7 +165,7 @@ func PréQuizz(nomQuizz string) bool { //Choix de commencer le quizz ou pas
 			return false
 		default:
 			affichage.ClearScreen()
-			fmt.Println("Choix invalide, veuillez réessayer.")
+			fmt.Println("Choix invalide, réessayes.")
 		}
 	}
 }
