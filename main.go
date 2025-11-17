@@ -54,7 +54,7 @@ func main() {
 							menuChoice = 4
 						default:
 							affichage.ClearScreen()
-							fmt.Println("Choix invalide, veuillez réessayer.")
+							fmt.Println("Choix invalide, réessayes.")
 						}
 						if menuChoice == 4 {
 							break
@@ -68,7 +68,7 @@ func main() {
 					menuChoice = 3
 				default:
 					affichage.ClearScreen()
-					fmt.Println("Choix invalide, veuillez réessayer.")
+					fmt.Println("Choix invalide, réessayes.")
 				}
 				if menuChoice == 3 {
 					break
@@ -76,8 +76,7 @@ func main() {
 			}
 		case 2:
 			affichage.ClearScreen()
-			fmt.Println("On verra ...")
-			fmt.Println("Florian est un gros nul en Go 😂 et Harold adore sa copine avec une baguette de 7cm attaché sur elle *Miam*")
+			fmt.Println("Bienvenu ! Voici un jeu de quizz dans les thèmes de l'informatique/dévelopement, de la cyber sécurité, et de la data !\n Il y a 10 questions par quizz et tu pourras voir tes statistiques dans un menu !")
 		case 3:
 			affichage.ClearScreen()
 			fmt.Println("Adios cheerios !")
